@@ -1,8 +1,20 @@
+import { Global } from '@emotion/react';
+import { GlobalStyle } from 'styles/GlobalStyle';
+import GlobalError from 'components/common/GlobalError';
+import GlobalLoading from 'components/common/GlobalLoading';
+import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { RouterProvider } from 'react-router-dom';
+import { router } from 'router';
+
 function App() {
   return (
-    <>
-      <h1>App</h1>
-    </>
+    <ErrorBoundary fallback={<GlobalError />}>
+      <Global styles={GlobalStyle} />
+      <Suspense fallback={<GlobalLoading />}>
+        <RouterProvider router={router} />
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 
