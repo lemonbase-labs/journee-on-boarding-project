@@ -28,7 +28,8 @@
       "@mocks/*": ["mocks/*"],
       "@routes/*": ["routes/*"],
       "@services/*": ["services/*"]
-    }
+    },
+    "types": ["node", "@emotion/react/types/css-prop"]
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

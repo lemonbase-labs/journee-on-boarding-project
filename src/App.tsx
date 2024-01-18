@@ -6,6 +6,7 @@ import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { RouterProvider } from 'react-router-dom';
 import { router } from 'router';
+import 'antd/dist/antd.css';
 
 function App() {
   return (
