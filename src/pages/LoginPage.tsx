@@ -1,5 +1,12 @@
+import LoginForm from 'components/auth/LoginForm';
+import Layout from 'layout';
+
 function LoginPage() {
-  return <div>로그인하라</div>;
+  return (
+    <Layout>
+      <LoginForm />
+    </Layout>
+  );
 }
 
 export default LoginPage;

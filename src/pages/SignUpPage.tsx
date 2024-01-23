@@ -1,5 +1,12 @@
+import SignUpForm from 'components/auth/SignUpForm';
+import Layout from 'layout';
+
 function SignUpPage() {
-  return <div>가입하라</div>;
+  return (
+    <Layout>
+      <SignUpForm />
+    </Layout>
+  );
 }
 
 export default SignUpPage;
