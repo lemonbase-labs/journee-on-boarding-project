@@ -7,11 +7,13 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { RouterProvider } from 'react-router-dom';
 import { router } from 'router';
 import 'antd/dist/antd.css';
+import AuthProvider from 'router/components/AuthProvider';
 
 function App() {
   return (
     <ErrorBoundary fallback={<GlobalError />}>
       <Global styles={GlobalStyle} />
+      <AuthProvider />
       <Suspense fallback={<GlobalLoading />}>
         <RouterProvider router={router} />
       </Suspense>
