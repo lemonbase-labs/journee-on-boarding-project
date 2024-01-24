@@ -36,7 +36,6 @@ const Content = styled(AntdContent)`
   background-color: ${SemanticColor.Layout.Background};
   display: flex;
   justify-content: center;
-  align-items: center;
   overflow: auto;
 `;
 
