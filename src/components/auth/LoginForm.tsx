@@ -1,6 +1,6 @@
 import { Button, Form, Space, message } from 'antd';
 import { Headline3 } from 'styles/typography';
-import AuthForm from './common/EmailPasswordFormItems';
+import EmailPasswordFormItems from './common/EmailPasswordFormItems';
 import Spacer from 'components/common/Spacer';
 import { PATHS } from 'router/paths';
 import useLoginAPI from '@apis/auth/useLoginAPI';
@@ -36,7 +36,7 @@ function LoginForm() {
       <Headline3 style={{ textAlign: 'center' }}>로그인</Headline3>
       <Spacer height={30} />
       <Form requiredMark={false} form={form} layout="vertical" onFinish={login} onFieldsChange={handleFormChange}>
-        <AuthForm />
+        <EmailPasswordFormItems />
         <Button size="large" type="primary" htmlType="submit" loading={isLoading} disabled={isSubmitDisabled} block>
           이메일로 로그인하기
         </Button>

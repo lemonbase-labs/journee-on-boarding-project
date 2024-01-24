@@ -1,19 +1,43 @@
 import { PropsWithChildren } from 'react';
-import * as S from './styles';
 import { PATHS } from 'router/paths';
 import Logo from '@assets/logo.svg';
+import { Link } from 'react-router-dom';
 
-function Layout({ children }: PropsWithChildren) {
+import styled from '@emotion/styled';
+import { Layout as AntdLayout } from 'antd';
+import PaletteColor from 'styles/PaletteColor';
+import SemanticColor from 'styles/SemanticColor';
+
+const { Header: AntdHeader, Content: AntdContent } = AntdLayout;
+
+function PublicLayout({ children }: PropsWithChildren) {
   return (
-    <S.Layout>
-      <S.Header>
-        <a href={PATHS.ROOT}>
+    <Layout>
+      <Header>
+        <Link to={PATHS.ROOT}>
           <img src={Logo} alt="logo" />
-        </a>
-      </S.Header>
-      <S.Content>{children}</S.Content>
-    </S.Layout>
+        </Link>
+      </Header>
+      <Content>{children}</Content>
+    </Layout>
   );
 }
 
-export default Layout;
+const Layout = styled(AntdLayout)`
+  height: 100vh;
+  overflow: auto;
+`;
+
+const Header = styled(AntdHeader)`
+  background-color: ${PaletteColor.white};
+`;
+
+const Content = styled(AntdContent)`
+  background-color: ${SemanticColor.Layout.Background};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+`;
+
+export default PublicLayout;
