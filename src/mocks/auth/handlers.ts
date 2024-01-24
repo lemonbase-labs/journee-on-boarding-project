@@ -51,7 +51,7 @@ export const authHandlers = [
 
   http.post<never, SignUpRequest>(API_PATH.AUTH.SIGN_UP, async ({ request }) => {
     const member = await request.json();
-    const { email, password, userName } = member;
+    const { email, password, name } = member;
 
     const person = personMap.get(email);
 
@@ -72,7 +72,7 @@ export const authHandlers = [
       entityId: personMap.size + 1,
       id: email,
       password,
-      userName,
+      name,
       joinDate: new Date(),
     });
     return HttpResponse.json(

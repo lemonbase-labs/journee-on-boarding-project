@@ -11,7 +11,7 @@ export type LoginRequest = {
 export type SignUpRequest = {
   email: string;
   password: string;
-  userName: string;
+  name: string;
 };
 
 export type RefreshRequest = {

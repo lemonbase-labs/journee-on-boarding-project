@@ -37,14 +37,14 @@ function SignUpForm() {
         layout="vertical"
         onFinish={signUp}
         onFieldsChange={handleFormChange}
-        initialValues={{ email: '', password: '', userName: '' }}
+        initialValues={{ email: '', password: '', name: '' }}
       >
         <EmailPasswordFormItems />
         <Form.Item
           label={<Body3>이름</Body3>}
-          name={AUTH_FORM_ITEM_NAMES.userName}
+          name={AUTH_FORM_ITEM_NAMES.name}
           colon={false}
-          rules={AUTH_RULES.userName}
+          rules={AUTH_RULES.name}
           getValueFromEvent={e => e.target.value.trim()}
         >
           <Input size="large" autoFocus placeholder="이름을 입력하세요" autoComplete="off" />

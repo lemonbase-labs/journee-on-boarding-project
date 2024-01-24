@@ -29,8 +29,8 @@ export default function useSignUpAPI({
     },
   });
 
-  function signUp({ email, password, userName }: SignUpRequest) {
-    trigger({ email, password, userName });
+  function signUp({ email, password, name }: SignUpRequest) {
+    trigger({ email, password, name });
   }
 
   return {
