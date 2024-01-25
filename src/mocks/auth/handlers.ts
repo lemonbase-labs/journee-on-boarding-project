@@ -47,7 +47,6 @@ export const authHandlers = [
       );
     }
 
-    // TODO: 토큰 만료
     if (password === person?.password) {
       const accessToken = await createJwt(email, '1h');
       const refreshToken = await createJwt(email, '30d');

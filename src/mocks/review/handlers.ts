@@ -138,8 +138,6 @@ export const reviewHandlers = [
       const req = await request.json();
       const prev = reviewCycleList[index];
 
-      console.log(req.reviewees);
-
       reviewCycleList[index] = {
         entityId: params.entityId,
         name: req.name,
@@ -157,7 +155,7 @@ export const reviewHandlers = [
           entityId: params.entityId,
         },
         {
-          status: 201,
+          status: 200,
         },
       );
     },

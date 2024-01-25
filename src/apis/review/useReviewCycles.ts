@@ -54,7 +54,6 @@ export function useUpdateReviewCycle({
     endpoint: entityId ? `${API_PATH.REVIEW_CYCLES}/${entityId}` : null,
     onSuccess: onSuccess,
     onError: err => {
-      console.log(err);
       const errorMessage = get(err, 'response.data.error.message', '리뷰 사이클 수정에 실패했습니다.');
       onError(errorMessage);
     },
