@@ -32,7 +32,7 @@ function LoginForm() {
   }
 
   return (
-    <Space direction="vertical" style={{ minWidth: '400px' }}>
+    <Space direction="vertical" style={{ minWidth: '400px', height: '100%', justifyContent: 'center' }}>
       <Headline3 style={{ textAlign: 'center' }}>로그인</Headline3>
       <Spacer height={30} />
       <Form requiredMark={false} form={form} layout="vertical" onFinish={login} onFieldsChange={handleFormChange}>

@@ -2,6 +2,18 @@ import { LoginRequest, RefreshRequest, SignUpRequest } from '@apis/auth/type';
 import { API_PATH } from '@apis/constants';
 import { HttpResponse, http } from 'msw';
 import { personMap } from './data';
+import { SignJWT, jwtVerify } from 'jose';
+import { secretKey } from '@mocks/constants';
+
+async function createJwt(email: string, expTime: string): Promise<string> {
+  return new SignJWT({ email })
+    .setProtectedHeader({ alg: 'HS256' })
+    .setIssuedAt()
+    .setIssuer('urn:example:issuer')
+    .setAudience('urn:example:audience')
+    .setExpirationTime(expTime)
+    .sign(secretKey);
+}
 
 export const authHandlers = [
   http.post<never, LoginRequest>(API_PATH.AUTH.LOGIN, async ({ request }) => {
@@ -34,13 +46,15 @@ export const authHandlers = [
       );
     }
 
+    // TODO: 토큰 만료
     if (password === person?.password) {
+      const accessToken = await createJwt(email, '1h');
+      const refreshToken = await createJwt(email, '30d');
+
       return HttpResponse.json(
         {
-          accessToken:
-            'eyJhbGciOiJIUzI1NiJ9.eyJtZW1iZXJJZCI6MSwiZXhwIjoxNjkxOTIyNjAzfQ.vCxUGMiv9bnb4JQGwk6NVx6kHi5hG80tDxafIvrfKbA',
-          refreshToken:
-            'eyJhbGciOiJIUzI1NiJ9.eyJtZW1iZXJJZCI6MSwiZXhwIjoxNjkxOTIyNjAzfQ.vCxUGMiv9bnb4JQGwk6NVx6kHi5hG80tDxafIvrfKbA',
+          accessToken,
+          refreshToken,
         },
         {
           status: 200,
@@ -75,12 +89,13 @@ export const authHandlers = [
       name,
       joinDate: new Date(),
     });
+    const accessToken = await createJwt(email, '5m');
+    const refreshToken = await createJwt(email, '15m');
+
     return HttpResponse.json(
       {
-        accessToken:
-          'accessTokeneyJhbGciOiJIUzI1NiJ9.eyJtZW1iZXJJZCI6MSwiZXhwIjoxNjkxOTIyNjAzfQ.vCxUGMiv9bnb4JQGwk6NVx6kHi5hG80tDxafIvrfKbA',
-        refreshToken:
-          'refreshTokeneyJhbGciOiJIUzI1NiJ9.eyJtZW1iZXJJZCI6MSwiZXhwIjoxNjkxOTIyNjAzfQ.vCxUGMiv9bnb4JQGwk6NVx6kHi5hG80tDxafIvrfKbA',
+        accessToken,
+        refreshToken,
       },
       {
         status: 201,
@@ -90,10 +105,11 @@ export const authHandlers = [
 
   http.post<never, RefreshRequest>(API_PATH.AUTH.REFRESH, async ({ request }) => {
     const { refreshToken } = await request.json();
+    const verified = await jwtVerify(refreshToken, secretKey);
 
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    const isExpired = verified.payload.exp! < Date.now() / 1000;
 
-    if (refreshToken === 'invalid') {
+    if (isExpired) {
       return HttpResponse.json(
         {
           error: { message: '다시 로그인해주세요.' },
@@ -104,11 +120,10 @@ export const authHandlers = [
       );
     }
 
+    const accessToken = await createJwt(verified.payload.email as string, '5m');
+
     return HttpResponse.json(
-      {
-        accessToken:
-          'accessTokeneyJhbGciOiJIUzI1NiJ9.eyJtZW1iZXJJZCI6MSwiZXhwIjoxNjkxOTIyNjAzfQ.vCxUGMiv9bnb4JQGwk6NVx6kHi5hG80tDxafIvrfKbA',
-      },
+      { accessToken },
       {
         status: 200,
       },

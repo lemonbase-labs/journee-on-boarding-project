@@ -7,10 +7,12 @@ import { useState } from 'react';
 import useSignUpAPI from '@apis/auth/useSignUpAPI';
 import { useNavigate } from 'react-router-dom';
 import { AUTH_FORM_ITEM_NAMES, AUTH_RULES } from './constants';
+import useIsLogin from 'hooks/auth/useIsLogin';
 
 function SignUpForm() {
   const [form] = Form.useForm();
   const navigate = useNavigate();
+  const { onLogin } = useIsLogin();
 
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
   const handleFormChange = () => {
@@ -19,7 +21,10 @@ function SignUpForm() {
   };
 
   const { signUp, isLoading } = useSignUpAPI({
-    onSuccess: () => navigate(PATHS.APP),
+    onSuccess: () => {
+      onLogin();
+      navigate(PATHS.APP);
+    },
     onError: showErrorMessage,
   });
 
@@ -28,7 +33,7 @@ function SignUpForm() {
   }
 
   return (
-    <Space direction="vertical" style={{ minWidth: '400px' }}>
+    <Space direction="vertical" style={{ minWidth: '400px', height: '100%', justifyContent: 'center' }}>
       <Headline3 style={{ textAlign: 'center' }}>회원가입</Headline3>
       <Spacer height={30} />
       <Form

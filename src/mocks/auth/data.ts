@@ -1,4 +1,13 @@
 import { faker } from '@faker-js/faker';
+import { v4 as uuidv4 } from 'uuid';
+
+export type Person = {
+  entityId: string;
+  id: string;
+  name: string;
+  password: string;
+  joinDate: Date;
+};
 
 export const personList = [
   {
@@ -9,7 +18,7 @@ export const personList = [
     joinDate: faker.date.past(),
   },
   ...Array.from({ length: 50 }, (_, i) => ({
-    entityId: i + 2,
+    entityId: uuidv4(),
     id: faker.internet.email(),
     name: faker.internet.userName(),
     password: faker.internet.password(),
@@ -18,3 +27,4 @@ export const personList = [
 ];
 
 export const personMap = new Map(personList.map(person => [person.id, person]));
+export const personIDMap = new Map(personList.map(person => [person.entityId, person]));

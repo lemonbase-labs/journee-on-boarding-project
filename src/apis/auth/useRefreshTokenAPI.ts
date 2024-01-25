@@ -3,6 +3,7 @@ import { API_PATH } from '@apis/constants';
 import { setAccessToken } from '@apis/data';
 import { get } from 'lodash';
 import { RefreshRequest, Tokens } from './type';
+import { PATHS } from 'router/paths';
 
 export default function useRefreshTokenAPI({
   onSuccess,
@@ -22,6 +23,9 @@ export default function useRefreshTokenAPI({
       localStorage.removeItem('refreshToken');
 
       onError(errorMessage);
+      setTimeout(() => {
+        window.location.replace(PATHS.LOGIN);
+      }, 500);
     },
   });
 
