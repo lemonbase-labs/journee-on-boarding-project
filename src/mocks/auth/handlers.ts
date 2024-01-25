@@ -4,6 +4,7 @@ import { HttpResponse, http } from 'msw';
 import { personMap } from './data';
 import { SignJWT, jwtVerify } from 'jose';
 import { secretKey } from '@mocks/constants';
+import { validateAccessToken } from '@mocks/utils';
 
 async function createJwt(email: string, expTime: string): Promise<string> {
   return new SignJWT({ email })
@@ -124,6 +125,22 @@ export const authHandlers = [
 
     return HttpResponse.json(
       { accessToken },
+      {
+        status: 200,
+      },
+    );
+  }),
+
+  http.post<never, never>(API_PATH.AUTH.LOGOUT, async ({ request }) => {
+    const res = await validateAccessToken(request);
+
+    if (res) {
+      return res;
+    }
+
+    // MEMO: 리프레쉬 토큰 만료 처리 필요하나 간단하게 구현
+    return HttpResponse.json(
+      {},
       {
         status: 200,
       },
