@@ -11,7 +11,7 @@ const PUBLIC_PATH = {
 const APP_PATH = {
   APP: '/app',
 
-  REVIEW: '/review',
+  REVIEW_CYCLE: '/review-cycle',
 };
 
 export const PATHS = {

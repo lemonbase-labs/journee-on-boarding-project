@@ -7,8 +7,8 @@ function AppRoutes() {
   return (
     <Routes>
       <Route element={<PrivateRoutes />}>
-        <Route index element={<Navigate to={`${PATHS.APP}${PATHS.REVIEW}`} replace />} />
-        <Route path={PATHS.REVIEW} element={<ReviewCyclePage />} />
+        <Route index element={<Navigate to={`${PATHS.APP}${PATHS.REVIEW_CYCLE}`} replace />} />
+        <Route path={PATHS.REVIEW_CYCLE} element={<ReviewCyclePage />} />
       </Route>
     </Routes>
   );
