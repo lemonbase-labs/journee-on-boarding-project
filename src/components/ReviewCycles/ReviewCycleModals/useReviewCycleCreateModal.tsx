@@ -1,6 +1,6 @@
 import useModal from 'hooks/useModal';
 import { Headline4 } from 'styles/typography';
-import ReviewCycleForm from './ReviewCycleForm';
+import ReviewCycleForm from '../ReviewCycleForm';
 import { message } from 'antd';
 import { useCreateReviewCycle, useGetReviewCycles } from '@apis/review/useReviewCycles';
 

@@ -1,9 +1,9 @@
 import useModal from 'hooks/useModal';
 import { Headline4 } from 'styles/typography';
-import ReviewCycleForm from './ReviewCycleForm';
+import ReviewCycleForm from '../ReviewCycleForm';
 import { message } from 'antd';
 import { useGetReviewCycles, useUpdateReviewCycle } from '@apis/review/useReviewCycles';
-import useSelectedReviewCycle from './useSelectedReviewCycle';
+import useSelectedReviewCycle from '../useSelectedReviewCycle';
 
 function useReviewCycleUpdateModal({ entityId }: { entityId?: number }) {
   const modal = useModal();

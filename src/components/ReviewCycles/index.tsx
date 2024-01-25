@@ -1,8 +1,8 @@
 import { Button } from 'antd';
 import { RoundContent } from 'components/common/RoundContent';
-import useReviewCycleCreateModal from './useReviewCycleCreateModal';
+import useReviewCycleCreateModal from './ReviewCycleModals/useReviewCycleCreateModal';
 import ReviewCycleTable from './ReviewCycleTable';
-import useReviewCycleUpdateModal from './useReviewCycleUpdateModal';
+import useReviewCycleUpdateModal from './ReviewCycleModals/useReviewCycleUpdateModal';
 import useSelectedReviewCycle from './useSelectedReviewCycle';
 
 function ReviewCycles() {
