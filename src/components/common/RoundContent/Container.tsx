@@ -9,8 +9,10 @@ function Container({ children }: PropsWithChildren) {
         padding: 24,
         margin: 36,
         minHeight: 280,
-        background: SemanticColor.Layout.Box,
+        background: SemanticColor.Layout.Main,
         borderRadius: 20,
+        gap: 20,
+        width: '100%',
         display: 'flex',
         flexDirection: 'column',
       }}

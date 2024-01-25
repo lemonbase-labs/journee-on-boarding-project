@@ -8,7 +8,7 @@ interface Props {
 
 function Header({ title, rightArea }: Props) {
   return (
-    <Space align="center">
+    <Space align="center" style={{ justifyContent: 'space-between' }}>
       <Headline3>{title}</Headline3>
       <Space>{rightArea}</Space>
     </Space>
