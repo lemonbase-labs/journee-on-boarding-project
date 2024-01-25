@@ -1,18 +1,18 @@
 import { API_PATH } from '@apis/constants';
 import { usePost } from '@apis/common/useMutation';
-import { LoginRequest, Tokens } from './type';
+import { SignUpRequest, Tokens } from './type';
 import { get } from 'lodash';
 import { setAccessToken } from '@apis/data';
 
-export default function useLoginAPI({
+export default function useSignUp({
   onSuccess,
   onError,
 }: {
   onSuccess: () => void;
   onError: (message: string) => void;
 }) {
-  const { trigger, isMutating } = usePost<LoginRequest, Tokens>({
-    endpoint: API_PATH.AUTH.LOGIN,
+  const { trigger, isMutating } = usePost<SignUpRequest, Tokens>({
+    endpoint: API_PATH.AUTH.SIGN_UP,
     onSuccess: res => {
       setAccessToken(res.accessToken);
       localStorage.setItem('refreshToken', res.refreshToken);
@@ -20,17 +20,21 @@ export default function useLoginAPI({
       onSuccess();
     },
     onError: err => {
-      const errorMessage = get(err, 'response.data.error.message', '로그인에 실패했습니다.');
+      const errorMessage = get(
+        err,
+        'response.data.error.message',
+        '회원가입에 실패했습니다. 잠시 후 다시 시도해주세요.',
+      );
       onError(errorMessage);
     },
   });
 
-  function login({ email, password }: LoginRequest) {
-    trigger({ email, password });
+  function signUp({ email, password, name }: SignUpRequest) {
+    trigger({ email, password, name });
   }
 
   return {
-    login,
+    signUp,
     isLoading: isMutating,
   };
 }

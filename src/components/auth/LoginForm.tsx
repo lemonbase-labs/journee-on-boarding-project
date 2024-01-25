@@ -3,7 +3,7 @@ import { Headline3 } from 'styles/typography';
 import EmailPasswordFormItems from './common/EmailPasswordFormItems';
 import Spacer from 'components/common/Spacer';
 import { PATHS } from 'router/paths';
-import useLoginAPI from '@apis/auth/useLoginAPI';
+import useLogin from '@apis/auth/useLogin';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useIsLogin from 'hooks/auth/useIsLogin';
@@ -19,7 +19,7 @@ function LoginForm() {
     setIsSubmitDisabled(hasErrors);
   };
 
-  const { login, isLoading } = useLoginAPI({
+  const { login, isLoading } = useLogin({
     onSuccess: () => {
       onLogin();
       navigate(PATHS.APP);

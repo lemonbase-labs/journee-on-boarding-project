@@ -1,11 +1,11 @@
-import useRefreshTokenAPI from '@apis/auth/useRefreshTokenAPI';
+import useRefreshToken from '@apis/auth/useRefreshToken';
 import { message } from 'antd';
 import useIsLogin from 'hooks/auth/useIsLogin';
 import { useEffect } from 'react';
 
 function AuthProvider() {
   const { onLogin } = useIsLogin();
-  const { refreshAccessToken } = useRefreshTokenAPI({
+  const { refreshAccessToken } = useRefreshToken({
     onSuccess: onLogin,
     onError: message.error,
   });

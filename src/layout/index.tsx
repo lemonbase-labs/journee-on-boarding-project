@@ -12,7 +12,7 @@ import useLogout from '@apis/auth/useLogout';
 
 const { Header: AntdHeader, Content: AntdContent } = AntdLayout;
 
-function PublicLayout({ children }: PropsWithChildren) {
+function Layout({ children }: PropsWithChildren) {
   const { isLogin, onLogout } = useIsLogin();
   const { logout } = useLogout({
     onSuccess: onLogout,
@@ -20,7 +20,7 @@ function PublicLayout({ children }: PropsWithChildren) {
   });
 
   return (
-    <Layout>
+    <StyledLayout>
       <Header>
         <Space size={20} style={{ width: '100%', justifyContent: 'space-between' }}>
           <Link to={PATHS.ROOT}>
@@ -30,11 +30,11 @@ function PublicLayout({ children }: PropsWithChildren) {
         </Space>
       </Header>
       <Content>{children}</Content>
-    </Layout>
+    </StyledLayout>
   );
 }
 
-const Layout = styled(AntdLayout)`
+const StyledLayout = styled(AntdLayout)`
   height: 100vh;
   overflow: auto;
 `;
@@ -50,4 +50,4 @@ const Content = styled(AntdContent)`
   overflow: auto;
 `;
 
-export default PublicLayout;
+export default Layout;

@@ -4,7 +4,7 @@ import EmailPasswordFormItems from './common/EmailPasswordFormItems';
 import Spacer from 'components/common/Spacer';
 import { PATHS } from 'router/paths';
 import { useState } from 'react';
-import useSignUpAPI from '@apis/auth/useSignUpAPI';
+import useSignUp from '@apis/auth/useSignUp';
 import { useNavigate } from 'react-router-dom';
 import { AUTH_FORM_ITEM_NAMES, AUTH_RULES } from './constants';
 import useIsLogin from 'hooks/auth/useIsLogin';
@@ -20,7 +20,7 @@ function SignUpForm() {
     setIsSubmitDisabled(hasErrors);
   };
 
-  const { signUp, isLoading } = useSignUpAPI({
+  const { signUp, isLoading } = useSignUp({
     onSuccess: () => {
       onLogin();
       navigate(PATHS.APP);

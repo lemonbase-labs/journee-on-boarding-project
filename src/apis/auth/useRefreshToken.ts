@@ -5,7 +5,7 @@ import { get } from 'lodash';
 import { RefreshRequest, Tokens } from './type';
 import { PATHS } from 'router/paths';
 
-export default function useRefreshTokenAPI({
+export default function useRefreshToken({
   onSuccess,
   onError,
 }: {
