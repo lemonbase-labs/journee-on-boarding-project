@@ -1,10 +1,10 @@
+import { Member, ReviewCycle } from './entities';
+
 export type ReviewCycleRequest = {
-  name: string;
-  reviewees: number[];
+  name: ReviewCycle['name'];
+  reviewees: Member['entityId'][];
   title: string;
   description: string;
 };
 
-export type ReviewCycleResponse = {
-  entityId: number;
-};
+export type ReviewCycleResponse = Pick<ReviewCycle, 'entityId'>;
