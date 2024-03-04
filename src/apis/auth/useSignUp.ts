@@ -2,7 +2,7 @@ import { API_PATH } from '@apis/constants';
 import { usePost } from '@apis/common/useMutation';
 import { SignUpRequest, Tokens } from './type';
 import { get } from 'lodash';
-import { setAccessToken } from '@apis/data';
+import { storeAccessToken } from '@apis/data';
 
 export default function useSignUp({
   onSuccess,
@@ -14,7 +14,7 @@ export default function useSignUp({
   const { trigger, isMutating } = usePost<SignUpRequest, Tokens>({
     endpoint: API_PATH.AUTH.SIGN_UP,
     onSuccess: res => {
-      setAccessToken(res.accessToken);
+      storeAccessToken(res.accessToken);
       localStorage.setItem('refreshToken', res.refreshToken);
 
       onSuccess();

@@ -2,7 +2,7 @@ import { API_PATH } from '@apis/constants';
 import { usePost } from '@apis/common/useMutation';
 import { get } from 'lodash';
 
-export default function useLogout({
+export default function useLogoutAPI({
   onSuccess,
   onError,
 }: {

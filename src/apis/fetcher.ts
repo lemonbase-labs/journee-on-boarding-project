@@ -1,7 +1,7 @@
 import axios, { HttpStatusCode } from 'axios';
 import { PATHS } from 'router/paths';
 import { API_PATH, ERROR_CODE } from './constants';
-import { getAccessToken, removeAccessToken, setAccessToken } from './data';
+import { getAccessToken, removeAccessToken, storeAccessToken } from './data';
 
 export const fetcher = axios.create({
   baseURL: 'http://localhost:5173',
@@ -46,7 +46,7 @@ fetcher.interceptors.response.use(
         const { data } = await fetcher.post(API_PATH.AUTH.REFRESH, { refreshToken });
 
         if (data) {
-          setAccessToken(data.accessToken);
+          storeAccessToken(data.accessToken);
 
           return fetcher(error.config);
         }

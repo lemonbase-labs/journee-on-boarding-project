@@ -6,7 +6,7 @@ const tokens: Tokens = {
   accessToken: null,
 };
 
-export function setAccessToken(token: string) {
+export function storeAccessToken(token: string) {
   tokens.accessToken = token;
 }
 

@@ -2,9 +2,9 @@ import { API_PATH } from '@apis/constants';
 import { usePost } from '@apis/common/useMutation';
 import { LoginRequest, Tokens } from './type';
 import { get } from 'lodash';
-import { setAccessToken } from '@apis/data';
+import { storeAccessToken } from '@apis/data';
 
-export default function useLogin({
+export default function useLoginAPI({
   onSuccess,
   onError,
 }: {
@@ -14,7 +14,7 @@ export default function useLogin({
   const { trigger, isMutating } = usePost<LoginRequest, Tokens>({
     endpoint: API_PATH.AUTH.LOGIN,
     onSuccess: res => {
-      setAccessToken(res.accessToken);
+      storeAccessToken(res.accessToken);
       localStorage.setItem('refreshToken', res.refreshToken);
 
       onSuccess();

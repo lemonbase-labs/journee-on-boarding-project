@@ -8,13 +8,13 @@ import { Layout as AntdLayout, Button, Space, message } from 'antd';
 import PaletteColor from 'styles/PaletteColor';
 import SemanticColor from 'styles/SemanticColor';
 import useIsLogin from 'hooks/auth/useIsLogin';
-import useLogout from '@apis/auth/useLogout';
+import useLogoutAPI from '@apis/auth/useLogoutAPI';
 
 const { Header: AntdHeader, Content: AntdContent } = AntdLayout;
 
 function Layout({ children }: PropsWithChildren) {
   const { isLogin, onLogout } = useIsLogin();
-  const { logout } = useLogout({
+  const { logout } = useLogoutAPI({
     onSuccess: onLogout,
     onError: message.error,
   });

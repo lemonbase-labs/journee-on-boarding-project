@@ -1,11 +1,11 @@
 import { usePost } from '@apis/common/useMutation';
 import { API_PATH } from '@apis/constants';
-import { setAccessToken } from '@apis/data';
+import { storeAccessToken } from '@apis/data';
 import { get } from 'lodash';
 import { RefreshRequest, Tokens } from './type';
 import { PATHS } from 'router/paths';
 
-export default function useRefreshToken({
+export default function useRefreshAccessToken({
   onSuccess,
   onError,
 }: {
@@ -15,7 +15,7 @@ export default function useRefreshToken({
   const { trigger, isMutating } = usePost<RefreshRequest, Pick<Tokens, 'accessToken'>>({
     endpoint: API_PATH.AUTH.REFRESH,
     onSuccess: res => {
-      setAccessToken(res.accessToken);
+      storeAccessToken(res.accessToken);
       onSuccess();
     },
     onError: err => {
