@@ -11,12 +11,14 @@ function DeleteButton({ entityId }: { entityId: number }) {
   });
 
   return (
-    <DeleteOutlined
+    <button
       onClick={e => {
         e.stopPropagation();
         deleteReviewCycle();
       }}
-    />
+    >
+      <DeleteOutlined />
+    </button>
   );
 }
 
