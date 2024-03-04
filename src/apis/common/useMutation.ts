@@ -5,14 +5,14 @@ import { fetcher } from '../fetcher';
 export type MutationCallback<Response> = Pick<MutationArgs<Response>, 'onSuccess' | 'onError'>;
 
 interface MutationArgs<Response> {
-  endpoint: string;
+  endpoint: string | null;
   onSuccess?: (res: Response) => void;
   onError?: (err: AxiosError) => void;
 }
 
 function useMutation<ExtraArg = void, Response = void>(
   method: 'post' | 'put' | 'patch' | 'delete',
-  endpoint: string,
+  endpoint: string | null,
   onSuccess?: (res: Response) => void,
   onError?: (err: AxiosError) => void,
 ) {

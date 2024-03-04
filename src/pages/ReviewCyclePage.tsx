@@ -1,5 +1,12 @@
+import ReviewCycles from 'components/ReviewCycles';
+import Layout from 'layout';
+
 function ReviewCyclePage() {
-  return <div>리뷰 정책 모여라</div>;
+  return (
+    <Layout>
+      <ReviewCycles />
+    </Layout>
+  );
 }
 
 export default ReviewCyclePage;
