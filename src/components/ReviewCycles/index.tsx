@@ -8,17 +8,17 @@ import useSelectedReviewCycle from './useSelectedReviewCycle';
 function ReviewCycles() {
   const { selectedReviewCycle } = useSelectedReviewCycle();
 
-  const ReviewCycleCreateModal = useReviewCycleCreateModal();
-  const ReviewCycleUpdateModal = useReviewCycleUpdateModal({
+  const reviewCycleCreateModal = useReviewCycleCreateModal();
+  const reviewCycleUpdateModal = useReviewCycleUpdateModal({
     entityId: selectedReviewCycle?.entityId,
   });
 
   function openReviewCycleCreateModal() {
-    ReviewCycleCreateModal.open();
+    reviewCycleCreateModal.open();
   }
 
   function openReviewCycleUpdateModal() {
-    ReviewCycleUpdateModal.open();
+    reviewCycleUpdateModal.open();
   }
 
   return (
@@ -34,8 +34,8 @@ function ReviewCycles() {
       <RoundContent.Body>
         <ReviewCycleTable onRowClick={openReviewCycleUpdateModal} />
       </RoundContent.Body>
-      {ReviewCycleCreateModal.render()}
-      {ReviewCycleUpdateModal.render()}
+      {reviewCycleCreateModal.render()}
+      {reviewCycleUpdateModal.render()}
     </RoundContent>
   );
 }
