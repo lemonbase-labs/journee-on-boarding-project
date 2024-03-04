@@ -25,10 +25,9 @@ export default function ReviewCycleForm({
   deleteButtonProps,
 }: Props) {
   const { members, isLoading } = useMembers();
-  const [form] = Form.useForm();
 
   return (
-    <Form form={form} labelAlign="right" onFinish={onFinish} onReset={onReset} initialValues={initialValues}>
+    <Form labelAlign="right" onFinish={onFinish} onReset={onReset} initialValues={initialValues}>
       <Form.Item label="리뷰 정책 이름" name={REVIEW_CYCLE_FORM_NAMES.name} rules={REVIEW_CYCLE_RULES.reviewCycleName}>
         <Input />
       </Form.Item>
